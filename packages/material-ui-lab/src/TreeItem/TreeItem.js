@@ -125,7 +125,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     if (expandable) {
-      toggle(nodeId);
+      toggle(event, nodeId);
     }
 
     if (onClick) {
@@ -139,7 +139,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
     const printableCharacter = () => {
       if (key === '*') {
-        expandAllSiblings(nodeId);
+        expandAllSiblings(event, nodeId);
         flag = true;
       } else if (isPrintableCharacter(key)) {
         setFocusByFirstCharacter(nodeId, key);
@@ -161,7 +161,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         case 'Enter':
         case ' ':
           if (nodeRef.current === event.currentTarget && expandable) {
-            toggle();
+            toggle(event);
             flag = true;
           }
           event.stopPropagation();
@@ -179,7 +179,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
             if (expanded) {
               focusNextNode(nodeId);
             } else {
-              toggle();
+              toggle(event);
             }
           }
           flag = true;
