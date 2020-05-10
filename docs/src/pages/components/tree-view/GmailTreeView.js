@@ -43,6 +43,7 @@ const useTreeItemStyles = makeStyles((theme) => ({
   },
   expanded: {},
   selected: {},
+  focused: {},
   label: {
     fontWeight: 'inherit',
     color: 'inherit',
@@ -94,6 +95,7 @@ function StyledTreeItem(props) {
         content: classes.content,
         expanded: classes.expanded,
         selected: classes.selected,
+        focused: classes.focused,
         group: classes.group,
         label: classes.label,
       }}
