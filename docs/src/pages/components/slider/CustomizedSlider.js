@@ -85,6 +85,7 @@ const IOSSlider = withStyles({
   rail: {
     height: 2,
     opacity: 0.5,
+    marginTop: 0,
     backgroundColor: '#bfbfbf',
   },
   mark: {
@@ -97,7 +98,13 @@ const IOSSlider = withStyles({
     opacity: 1,
     backgroundColor: 'currentColor',
   },
-})(Slider);
+  lastMark: {
+    marginLeft: 0
+  },
+  firstMark: {
+    marginLeft: 0
+  }
+}, { name:'IOSSlider' })(Slider);
 
 const PrettoSlider = withStyles({
   root: {
@@ -126,6 +133,7 @@ const PrettoSlider = withStyles({
   rail: {
     height: 8,
     borderRadius: 4,
+    marginTop: 0,
   },
 })(Slider);
 
@@ -163,6 +171,7 @@ const AirbnbSlider = withStyles({
     color: '#d8d8d8',
     opacity: 1,
     height: 3,
+    marginTop: 0,
   },
 })(Slider);
 

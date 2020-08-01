@@ -128,7 +128,7 @@ const Identity = (x) => x;
 export const styles = (theme) => ({
   /* Styles applied to the root element. */
   root: {
-    height: 2,
+    height: 6,
     width: '100%',
     boxSizing: 'content-box',
     padding: '13px 0',
@@ -144,7 +144,7 @@ export const styles = (theme) => ({
       color: theme.palette.grey[400],
     },
     '&$vertical': {
-      width: 2,
+      width: 6,
       height: '100%',
       padding: '0 13px',
     },
@@ -185,24 +185,27 @@ export const styles = (theme) => ({
     display: 'block',
     position: 'absolute',
     width: '100%',
-    height: 2,
-    borderRadius: 1,
+    marginTop: 1,
+    height: 4,
+    borderRadius: 2,
     backgroundColor: 'currentColor',
     opacity: 0.38,
     '$vertical &': {
       height: '100%',
-      width: 2,
+      width: 4,
+      marginTop: 0,
+      marginLeft: 1,
     },
   },
   /* Styles applied to the track element. */
   track: {
     display: 'block',
     position: 'absolute',
-    height: 2,
-    borderRadius: 1,
+    height: 6,
+    borderRadius: 3,
     backgroundColor: 'currentColor',
     '$vertical &': {
-      width: 2,
+      width: 6,
     },
   },
   /* Styles applied to the track element if `track={false}`. */
@@ -227,10 +230,10 @@ export const styles = (theme) => ({
   /* Styles applied to the thumb element. */
   thumb: {
     position: 'absolute',
-    width: 12,
-    height: 12,
-    marginLeft: -6,
-    marginTop: -5,
+    width: 20,
+    height: 20,
+    marginLeft: -10,
+    marginTop: -7,
     boxSizing: 'border-box',
     borderRadius: '50%',
     outline: 0,
@@ -245,12 +248,32 @@ export const styles = (theme) => ({
       position: 'absolute',
       content: '""',
       borderRadius: '50%',
-      // reach 42px hit target (2 * 15 + thumb diameter)
-      left: -15,
-      top: -15,
-      right: -15,
-      bottom: -15,
+      // reach 42px hit target (2 * 11 + thumb diameter)
+      left: -11,
+      top: -11,
+      right: -11,
+      bottom: -11,
     },
+    '&$disabled': {
+      width: 16,
+      height: 16,
+      marginLeft: -8,
+      marginTop: -5,
+      '&:hover': {
+        boxShadow: 'none',
+      },
+    },
+    '$vertical &': {
+      marginLeft: -7,
+      marginBottom: -10,
+    },
+    '$vertical &$disabled': {
+      marginLeft: -5,
+      marginBottom: -8,
+    },
+  },
+  /* Styles applied to the thumb element if `color="primary"`. */
+  thumbColorPrimary: {
     '&$focusVisible,&:hover': {
       boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
       '@media (hover: none)': {
@@ -260,27 +283,6 @@ export const styles = (theme) => ({
     '&$active': {
       boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
     },
-    '&$disabled': {
-      width: 8,
-      height: 8,
-      marginLeft: -4,
-      marginTop: -3,
-      '&:hover': {
-        boxShadow: 'none',
-      },
-    },
-    '$vertical &': {
-      marginLeft: -5,
-      marginBottom: -6,
-    },
-    '$vertical &$disabled': {
-      marginLeft: -3,
-      marginBottom: -4,
-    },
-  },
-  /* Styles applied to the thumb element if `color="primary"`. */
-  thumbColorPrimary: {
-    // TODO v5: move the style here
   },
   /* Styles applied to the thumb element if `color="secondary"`. */
   thumbColorSecondary: {
@@ -298,15 +300,20 @@ export const styles = (theme) => ({
   /* Styles applied to the thumb label element. */
   valueLabel: {
     // IE 11 centering bug, to remove from the customization demos once no longer supported
-    left: 'calc(-50% - 4px)',
+    left: 'calc(-50% + 4px)',
   },
   /* Styles applied to the mark element. */
   mark: {
     position: 'absolute',
     width: 2,
     height: 2,
+    marginTop: 2,
     borderRadius: 1,
     backgroundColor: 'currentColor',
+    '$vertical &': {
+      marginTop: 0,
+      marginLeft: 2,
+    },
   },
   /* Styles applied to the mark element if active (depending on the value). */
   markActive: {
@@ -336,6 +343,18 @@ export const styles = (theme) => ({
   /* Styles applied to the mark label element if active (depending on the value). */
   markLabelActive: {
     color: theme.palette.text.primary,
+  },
+  firstMark: {
+    marginLeft: 3,
+    '$vertical &': {
+      marginBottom: 2,
+    },
+  },
+  lastMark: {
+    marginLeft: -4,
+    '$vertical &': {
+      marginBottom: -4,
+    },
   },
 });
 
@@ -719,6 +738,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               data-index={index}
               className={clsx(classes.mark, {
                 [classes.markActive]: markActive,
+                [classes.firstMark]: index === 0 && index !== marks.length - 1,
+                [classes.lastMark]: index !== 0 && index === marks.length - 1,
               })}
             />
             {mark.label != null ? (
