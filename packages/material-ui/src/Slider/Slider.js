@@ -185,7 +185,7 @@ export const styles = (theme) => ({
     display: 'block',
     position: 'absolute',
     width: '100%',
-    marginTop: 1,
+    margin: '1px 0px',
     height: 4,
     borderRadius: 2,
     backgroundColor: 'currentColor',
@@ -193,8 +193,7 @@ export const styles = (theme) => ({
     '$vertical &': {
       height: '100%',
       width: 4,
-      marginTop: 0,
-      marginLeft: 1,
+      margin: '0px 1px',
     },
   },
   /* Styles applied to the track element. */
@@ -255,10 +254,6 @@ export const styles = (theme) => ({
       bottom: -11,
     },
     '&$disabled': {
-      width: 16,
-      height: 16,
-      marginLeft: -8,
-      marginTop: -5,
       '&:hover': {
         boxShadow: 'none',
       },
@@ -266,10 +261,6 @@ export const styles = (theme) => ({
     '$vertical &': {
       marginLeft: -7,
       marginBottom: -10,
-    },
-    '$vertical &$disabled': {
-      marginLeft: -5,
-      marginBottom: -8,
     },
   },
   /* Styles applied to the thumb element if `color="primary"`. */
@@ -300,19 +291,18 @@ export const styles = (theme) => ({
   /* Styles applied to the thumb label element. */
   valueLabel: {
     // IE 11 centering bug, to remove from the customization demos once no longer supported
-    left: 'calc(-50% + 4px)',
+    left: '50%',
   },
   /* Styles applied to the mark element. */
   mark: {
     position: 'absolute',
     width: 2,
     height: 2,
-    marginTop: 2,
+    margin: '2px 0px',
     borderRadius: 1,
     backgroundColor: 'currentColor',
     '$vertical &': {
-      marginTop: 0,
-      marginLeft: 2,
+      margin: '0px 2px',
     },
   },
   /* Styles applied to the mark element if active (depending on the value). */

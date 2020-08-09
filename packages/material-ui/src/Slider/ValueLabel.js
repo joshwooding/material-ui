@@ -20,23 +20,44 @@ const styles = (theme) => ({
       duration: theme.transitions.duration.shortest,
     }),
     top: -34,
-    transformOrigin: 'bottom center',
+    transformOrigin: 'bottom left',
     transform: 'scale(0)',
     position: 'absolute',
   },
-  circle: {
+  square: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 32,
-    height: 32,
-    borderRadius: '50% 50% 50% 0',
-    backgroundColor: 'currentColor',
-    transform: 'rotate(-45deg)',
+    backgroundColor: '#6e6e6e',
+    borderRadius: 2,
+    position: 'relative',
+    left: '-50%',
   },
   label: {
-    color: theme.palette.primary.contrastText,
-    transform: 'rotate(45deg)',
+    color: theme.palette.common.white,
+    padding: '8px 12px',
+  },
+  arrow: {
+    position: 'absolute',
+    width: '1em',
+    height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
+    boxSizing: 'border-box',
+    color: '#6e6e6e',
+    bottom: 0,
+    left: 0,
+    marginBottom: '-0.71em',
+    marginLeft: 'calc(50% - 0.5em)',
+    marginRight: 'calc(50% - 0.5em)',
+    '&::before': {
+      content: '""',
+      margin: 'auto',
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'currentColor',
+      transform: 'rotate(45deg)',
+      transformOrigin: '100% 0',
+    },
   },
 });
 
@@ -62,8 +83,9 @@ function ValueLabel(props) {
       ),
     },
     <span className={clsx(classes.offset, className)}>
-      <span className={classes.circle}>
+      <span className={classes.square}>
         <span className={classes.label}>{value}</span>
+        <span className={classes.arrow} />
       </span>
     </span>,
   );

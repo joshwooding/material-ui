@@ -72,9 +72,8 @@ const IOSSlider = withStyles({
   },
   active: {},
   valueLabel: {
-    left: 'calc(-50% + 12px)',
     top: -22,
-    '& *': {
+    '& *, & *::before': {
       background: 'transparent',
       color: '#000',
     },
@@ -104,11 +103,11 @@ const IOSSlider = withStyles({
   firstMark: {
     marginLeft: 0
   }
-}, { name:'IOSSlider' })(Slider);
+})(Slider);
 
 const PrettoSlider = withStyles({
   root: {
-    color: '#52af77',
+    color: '#35ae77',
     height: 8,
   },
   thumb: {
@@ -122,10 +121,19 @@ const PrettoSlider = withStyles({
       boxShadow: 'inherit',
     },
   },
-  active: {},
   valueLabel: {
-    left: 'calc(-50% + 4px)',
+    '& > *': {
+      backgroundColor: '#d3f5e4',
+    },
+    '& *': {
+      color: 'inherit',
+      fontWeight: 'bold',
+    },
+    '& *::before': {
+      display: 'none'
+    }
   },
+  active: {},
   track: {
     height: 8,
     borderRadius: 4,
@@ -134,6 +142,7 @@ const PrettoSlider = withStyles({
     height: 8,
     borderRadius: 4,
     marginTop: 0,
+    backgroundColor: '#d1d7dd'
   },
 })(Slider);
 
